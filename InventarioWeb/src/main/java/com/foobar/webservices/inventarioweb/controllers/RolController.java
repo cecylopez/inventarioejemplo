@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foobar.webservices.inventarioweb.entities.Rol;
+import com.foobar.webservices.inventarioweb.entities.RolSinNivel;
 import com.foobar.webservices.inventarioweb.entities.Usuario;
 import com.foobar.webservices.inventarioweb.repositories.RolRepository;
+import com.foobar.webservices.inventarioweb.repositories.RolSinNivelRepository;
 
 @RestController 
 @RequestMapping("/roles")
@@ -22,6 +24,9 @@ public class RolController {
 	
 	@Autowired
 	protected RolRepository rolRepository;
+	
+	@Autowired
+	protected RolSinNivelRepository rolSinNivelRepository;
 	
 	@GetMapping(path="/")
 	public ResponseEntity<List<Rol>>list(@RequestParam(name="nombre", required=false) String nombre, @RequestParam(name="sector", required=false) String sector){
@@ -38,6 +43,12 @@ public class RolController {
 		
 		List<Rol> lista= rolRepository.findAll();
 		return new ResponseEntity<List<Rol>>(lista, HttpStatus.OK);
+	}
+	
+	@GetMapping(path="/sinnivel/")
+	public ResponseEntity<List<RolSinNivel>>list(){
+		List<RolSinNivel> lista= rolSinNivelRepository.findAll();
+		return new ResponseEntity<List<RolSinNivel>>(lista, HttpStatus.OK);
 	}
 	
 	@GetMapping(path="/{id}")

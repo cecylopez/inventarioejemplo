@@ -5,19 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Rol {
+@Table(name="Rol")
+public class RolSinNivel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String nombre;
-
-	private int nivel;
 
 	public int getId() {
 		return id;
@@ -34,13 +34,4 @@ public class Rol {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public int getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
-	}
-
 }
